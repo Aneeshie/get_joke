@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        button { padding: 10px 15px; margin: 10px; font-size: 16px; cursor: pointer; }
+        .joke-container { width: 50%; margin: auto; text-align: left; }
+        .joke-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Joke Manager</h1>
+    <form action="/fetch" method="POST">
+        <button type="submit">Fetch a Joke</button>
+    </form>
+
+    <div class="joke-container">
+        {% for joke in jokes %}
+        <div class="joke-item">
+            <span>{{ joke }}</span>
+            <form action="/delete/{{ loop.index0 }}" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
